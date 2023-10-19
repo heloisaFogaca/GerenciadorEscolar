@@ -1,23 +1,21 @@
 package com.gerenciamento.gerenciamento.model;
 
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "secretario")
+@PrimaryKeyJoinColumn(name="id")
 public class Secretario extends Usuario {
-
     private int quantidadeDeBoletins;
-
-    public Secretario(int id, String nome, String endereco, int idade){
-        super(id, nome, idade, endereco);
-        this.quantidadeDeBoletins = 0;
-    }
-    public Secretario(ResultSet resultSet) throws SQLException {
-        super(resultSet);
-    }
-
-    public Secretario(int id){
-        super(id);
-    }
 
     @Override
     public String menu() {

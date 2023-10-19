@@ -1,4 +1,44 @@
 package com.gerenciamento.gerenciamento.controller;
 
-public class SecretarioController {
+import com.gerenciamento.gerenciamento.Service.DisciplinaService;
+import com.gerenciamento.gerenciamento.Service.UsuarioService;
+import com.gerenciamento.gerenciamento.model.Secretario;
+import com.gerenciamento.gerenciamento.model.Disciplina;
+import com.gerenciamento.gerenciamento.model.Professor;
+import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+
+import java.sql.SQLException;
+import java.util.Collection;
+
+@RestController
+@RequestMapping("/secretario")
+@AllArgsConstructor
+public class SecretarioController{
+    private UsuarioService usuarioService;
+
+    @GetMapping("/{id}")
+    public Secretario buscarSecretario(@PathVariable Integer id) throws SQLException {
+        return (Secretario) usuarioService.buscarUsuario(id);
+    }
+
+    @GetMapping
+    public Collection buscarTodos() throws SQLException {
+        return usuarioService.buscarTodos();
+    }
+
+    @DeleteMapping
+    public void remover(@RequestParam Integer id) throws SQLException {
+        usuarioService.remover(id);
+    }
+
+    @PostMapping
+    public void inserir(@RequestBody Secretario secretario){
+        usuarioService.salvar(secretario);
+    }
+
+    @PutMapping
+    public void atualizar(@RequestBody Secretario secretario){
+        usuarioService.salvar(secretario);
+    }
 }

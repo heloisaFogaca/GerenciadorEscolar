@@ -1,26 +1,25 @@
 package com.gerenciamento.gerenciamento.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
 public class Disciplina {
-    private String nome;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private String nome;
     private double cargaHoraria;
-
-    public Disciplina(String nome, int id, double cargaHoraria){
-        this.nome = nome;
-        this.id = id;
-        this.cargaHoraria = cargaHoraria;
-    }
-
-    public Disciplina(ResultSet resultSet) throws SQLException {
-        this.id = resultSet.getInt("id");
-        this.nome = resultSet.getString("nome");
-        this.cargaHoraria = resultSet.getDouble("cargaHoraria");
-    }
-
-    public String getNome() {
-        return nome;
-    }
 }
+
