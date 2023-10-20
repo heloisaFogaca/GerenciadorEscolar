@@ -5,10 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,12 +16,5 @@ public class Professor extends Usuario {
     private Turma turma;
     @ManyToOne
     private Disciplina disciplina;
-    @Override
-    public String menu() {
-        return """
-                1 - Ver média de alunos
-                2 - Gerar nova nota
-                0 - Logout
-                """;
-    }
+
 }

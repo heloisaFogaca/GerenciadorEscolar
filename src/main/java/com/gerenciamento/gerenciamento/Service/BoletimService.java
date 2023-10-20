@@ -1,9 +1,8 @@
 package com.gerenciamento.gerenciamento.Service;
 
 import com.gerenciamento.gerenciamento.model.Boletim;
-import com.gerenciamento.gerenciamento.model.Disciplina;
+import com.gerenciamento.gerenciamento.model.ChaveBoletim;
 import com.gerenciamento.gerenciamento.repository.BoletimRepository;
-import com.gerenciamento.gerenciamento.repository.DisciplinaRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,16 +18,16 @@ public class BoletimService {
             boletimRepository.save(boletim);
         }
 
-        public Boletim buscar(Integer id) {
-            return boletimRepository.findById(id).get();
+        public Boletim buscar(ChaveBoletim chaveBoletim) {
+            return boletimRepository.findById(chaveBoletim).get();
         }
 
         public Collection buscarTodos() {
             return boletimRepository.findAll();
         }
 
-        public void remover(Integer id) {
-            boletimRepository.deleteById(id);
+        public void remover(ChaveBoletim chaveBoletim) {
+            boletimRepository.deleteById(chaveBoletim);
         }
 
 }

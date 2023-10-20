@@ -1,9 +1,8 @@
 package com.gerenciamento.gerenciamento.controller;
 
 import com.gerenciamento.gerenciamento.Service.BoletimService;
-import com.gerenciamento.gerenciamento.Service.UsuarioService;
-import com.gerenciamento.gerenciamento.model.Aluno;
 import com.gerenciamento.gerenciamento.model.Boletim;
+import com.gerenciamento.gerenciamento.model.ChaveBoletim;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,8 +17,8 @@ public class BoletimController {
         private BoletimService boletimService;
 
         @GetMapping("/{id}")
-        public Boletim buscar(@PathVariable Integer id) throws SQLException {
-            return boletimService.buscar(id);
+        public Boletim buscar(@PathVariable ChaveBoletim chaveBoletim) throws SQLException {
+            return boletimService.buscar(chaveBoletim);
         }
 
         @GetMapping
@@ -28,8 +27,8 @@ public class BoletimController {
         }
 
         @DeleteMapping
-        public void remover(@RequestParam Integer id) throws SQLException {
-            boletimService.remover(id);
+        public void remover(@RequestParam ChaveBoletim chaveBoletim) throws SQLException {
+            boletimService.remover(chaveBoletim);
         }
 
         @PostMapping

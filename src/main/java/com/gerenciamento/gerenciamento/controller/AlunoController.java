@@ -1,10 +1,8 @@
 package com.gerenciamento.gerenciamento.controller;
 
-import com.gerenciamento.gerenciamento.Service.DisciplinaService;
+
 import com.gerenciamento.gerenciamento.Service.UsuarioService;
 import com.gerenciamento.gerenciamento.model.Aluno;
-import com.gerenciamento.gerenciamento.model.Disciplina;
-import com.gerenciamento.gerenciamento.model.Professor;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

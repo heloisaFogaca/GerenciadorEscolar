@@ -1,9 +1,7 @@
 package com.gerenciamento.gerenciamento.controller;
 
 import com.gerenciamento.gerenciamento.Service.TurmaService;
-import com.gerenciamento.gerenciamento.Service.UsuarioService;
 import com.gerenciamento.gerenciamento.model.Turma;
-import com.gerenciamento.gerenciamento.model.Usuario;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

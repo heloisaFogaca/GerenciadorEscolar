@@ -12,7 +12,7 @@ public class ChaveBoletim {
 
     @ManyToOne
     private Aluno aluno;
-    @OneToOne
+    @ManyToOne
     private Disciplina disciplina;
     @ManyToOne
     private Turma turma;
