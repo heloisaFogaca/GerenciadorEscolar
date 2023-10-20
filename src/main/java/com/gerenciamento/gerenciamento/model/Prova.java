@@ -14,9 +14,9 @@ public class Prova {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-//    @OneToMany
-//    private Professor professor;
-//    private double nota;
-//    @ManyToOne
-//    private Aluno aluno;
+    @ManyToOne
+    private Professor professor;
+    private double nota;
+    @ManyToOne
+    private Aluno aluno;
 }
