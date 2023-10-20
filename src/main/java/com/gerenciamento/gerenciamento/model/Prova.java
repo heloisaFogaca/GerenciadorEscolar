@@ -14,9 +14,9 @@ public class Prova {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @OneToOne (cascade = CascadeType.PERSIST)
-    private Professor professor;
-    private double nota;
-    @OneToOne (cascade = CascadeType.PERSIST)
-    private Aluno aluno;
+//    @OneToMany
+//    private Professor professor;
+//    private double nota;
+//    @ManyToOne
+//    private Aluno aluno;
 }
