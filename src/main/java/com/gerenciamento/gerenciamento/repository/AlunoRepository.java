@@ -1,11 +1,10 @@
 package com.gerenciamento.gerenciamento.repository;
 
-import com.gerenciamento.gerenciamento.model.Usuario;
+
+import com.gerenciamento.gerenciamento.model.Aluno;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Set;
-
 @Repository
-public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
+public interface AlunoRepository extends JpaRepository<Aluno, Integer> {
 }

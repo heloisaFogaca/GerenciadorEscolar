@@ -1,6 +1,7 @@
 package com.gerenciamento.gerenciamento.controller;
 
 
+import com.gerenciamento.gerenciamento.Service.AlunoService;
 import com.gerenciamento.gerenciamento.Service.UsuarioService;
 import com.gerenciamento.gerenciamento.model.Aluno;
 import lombok.AllArgsConstructor;
@@ -13,30 +14,30 @@ import java.util.Collection;
 @RequestMapping("/aluno")
 @AllArgsConstructor
 public class AlunoController{
-    private UsuarioService usuarioService;
+    private AlunoService alunoService;
 
     @GetMapping("/{id}")
     public Aluno buscarAluno(@PathVariable Integer id) throws SQLException {
-        return (Aluno) usuarioService.buscarUsuario(id);
+        return (Aluno) alunoService.buscarUsuario(id);
     }
 
     @GetMapping
     public Collection buscarTodos() throws SQLException {
-        return usuarioService.buscarTodos();
+        return alunoService.buscarTodos();
     }
 
     @DeleteMapping
     public void remover(@RequestParam Integer id) throws SQLException {
-        usuarioService.remover(id);
+        alunoService.remover(id);
     }
 
     @PostMapping
     public void inserir(@RequestBody Aluno aluno) throws SQLException {
-        usuarioService.salvar(aluno);
+        alunoService.salvar(aluno);
     }
 
     @PutMapping
     public void atualizar(@RequestBody Aluno aluno){
-        usuarioService.salvar(aluno);
+        alunoService.salvar(aluno);
     }
 }
