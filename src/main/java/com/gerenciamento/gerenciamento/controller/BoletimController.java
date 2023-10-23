@@ -1,6 +1,7 @@
 package com.gerenciamento.gerenciamento.controller;
 
 import com.gerenciamento.gerenciamento.Service.BoletimService;
+import com.gerenciamento.gerenciamento.model.Aluno;
 import com.gerenciamento.gerenciamento.model.Boletim;
 import com.gerenciamento.gerenciamento.model.ChaveBoletim;
 import lombok.AllArgsConstructor;
@@ -32,12 +33,12 @@ public class BoletimController {
         }
 
         @PostMapping
-        public void inserir(@RequestBody Boletim boletim) throws SQLException {
-            boletimService.salvar(boletim);
+        public void inserir(@RequestBody Aluno aluno) throws SQLException {
+            boletimService.salvar(aluno);
         }
 
         @PutMapping
-        public void atualizar(@RequestBody Boletim boletim){
-            boletimService.salvar(boletim);
+        public void atualizar(@RequestBody Aluno aluno){
+            boletimService.salvar(aluno);
         }
     }

@@ -1,5 +1,6 @@
 package com.gerenciamento.gerenciamento;
 
+import com.gerenciamento.gerenciamento.Service.BoletimService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -9,7 +10,8 @@ import java.sql.*;
 public class GerenciamentoApplication {
 
 	public static void main(String[] args) throws SQLException {
-		chamaMediaDisciplinas();
+
+//		chamaMediaDisciplinas();
 		SpringApplication.run(GerenciamentoApplication.class, args);
 	}
 

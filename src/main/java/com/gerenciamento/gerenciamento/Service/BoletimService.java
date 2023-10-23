@@ -1,7 +1,9 @@
 package com.gerenciamento.gerenciamento.Service;
 
+import com.gerenciamento.gerenciamento.model.Aluno;
 import com.gerenciamento.gerenciamento.model.Boletim;
 import com.gerenciamento.gerenciamento.model.ChaveBoletim;
+import com.gerenciamento.gerenciamento.model.Prova;
 import com.gerenciamento.gerenciamento.repository.BoletimRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,8 +16,8 @@ public class BoletimService {
 
         private BoletimRepository boletimRepository;
 
-        public void salvar(Boletim boletim) {
-            boletimRepository.save(boletim);
+        public void salvar(Aluno aluno) {
+            boletimRepository.save(gerarBoletim(aluno));
         }
 
         public Boletim buscar(ChaveBoletim chaveBoletim) {
@@ -30,4 +32,14 @@ public class BoletimService {
             boletimRepository.deleteById(chaveBoletim);
         }
 
+        public Boletim gerarBoletim(Aluno aluno){
+        double somaMedias = 0.0;
+        for(Prova prova : aluno.getProvas()){
+            somaMedias += prova.getNota();
+        }
+        return new Boletim(aluno,somaMedias/aluno.getProvas().size());
+    }
+
 }
+
+
