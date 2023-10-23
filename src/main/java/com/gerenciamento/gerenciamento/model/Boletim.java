@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Boletim {
 
-    @ManyToOne
+    @OneToOne
     private Aluno aluno;
     private Double media;
 }
