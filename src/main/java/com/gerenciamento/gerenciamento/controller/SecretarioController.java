@@ -1,6 +1,7 @@
 package com.gerenciamento.gerenciamento.controller;
 
 
+import com.gerenciamento.gerenciamento.Service.SecretarioService;
 import com.gerenciamento.gerenciamento.Service.UsuarioService;
 import com.gerenciamento.gerenciamento.model.Secretario;
 import lombok.AllArgsConstructor;
@@ -13,7 +14,7 @@ import java.util.Collection;
 @RequestMapping("/secretario")
 @AllArgsConstructor
 public class SecretarioController{
-    private UsuarioService usuarioService;
+    private SecretarioService usuarioService;
 
     @GetMapping("/{id}")
     public Secretario buscarSecretario(@PathVariable Integer id) throws SQLException {

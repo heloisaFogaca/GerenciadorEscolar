@@ -16,11 +16,6 @@ public class UsuarioService {
     private UsuarioRepository usuarioRepository;
 
     public void salvar(Usuario usuario) {
-        try {
-            usuarioRepository.findById(usuario.getId());
-        } catch (NoSuchElementException e) {
-            usuarioRepository.save(usuario);
-        }
         usuarioRepository.save(usuario);
     }
 
@@ -28,11 +23,11 @@ public class UsuarioService {
         return usuarioRepository.findById(id).get();
     }
 
-    public Collection<Usuario> buscarTodos() throws SQLException {
+    public Collection<Usuario> buscarTodos()  {
         return usuarioRepository.findAll();
     }
 
-    public void remover(Integer id) throws SQLException {
+    public void remover(Integer id) {
         usuarioRepository.deleteById(id);
     }
 

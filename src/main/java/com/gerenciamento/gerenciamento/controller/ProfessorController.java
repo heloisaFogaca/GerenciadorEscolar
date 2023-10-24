@@ -1,5 +1,6 @@
 package com.gerenciamento.gerenciamento.controller;
 
+import com.gerenciamento.gerenciamento.Service.ProfessorService;
 import com.gerenciamento.gerenciamento.Service.UsuarioService;
 import com.gerenciamento.gerenciamento.model.Professor;
 import lombok.AllArgsConstructor;
@@ -13,7 +14,7 @@ import java.util.Collection;
 @AllArgsConstructor
 @CrossOrigin(origins = "http://localhost:3000")
 public class ProfessorController {
-    private UsuarioService usuarioService;
+    private ProfessorService usuarioService;
 
     @GetMapping("/{id}")
     public Professor buscarProfessor(@PathVariable Integer id) throws SQLException {

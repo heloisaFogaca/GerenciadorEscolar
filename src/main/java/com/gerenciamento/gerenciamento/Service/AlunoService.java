@@ -19,15 +19,15 @@ public class AlunoService {
             alunoRepository.save(aluno);
         }
 
-        public Usuario buscarUsuario(Integer id) throws SQLException {
+        public Usuario buscarUsuario(Integer id) {
             return alunoRepository.findById(id).get();
         }
 
-        public Collection<Aluno> buscarTodos() throws SQLException {
+        public Collection<Aluno> buscarTodos() {
             return alunoRepository.findAll();
         }
 
-        public void remover(Integer id) throws SQLException {
+        public void remover(Integer id) {
             alunoRepository.deleteById(id);
         }
 }
