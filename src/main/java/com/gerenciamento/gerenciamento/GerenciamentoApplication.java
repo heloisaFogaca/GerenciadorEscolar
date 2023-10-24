@@ -10,9 +10,9 @@ import java.sql.*;
 public class GerenciamentoApplication {
 
 	public static void main(String[] args) throws SQLException {
-
-//		chamaMediaDisciplinas();
 		SpringApplication.run(GerenciamentoApplication.class, args);
+
+		chamaMediaDisciplinas2();
 	}
 
 	public static void chamaMediaDisciplinas() throws SQLException {
@@ -32,24 +32,28 @@ public class GerenciamentoApplication {
 
 		statement.close();
 		conn.close();
+
+}
+
+	public static void chamaMediaDisciplinas2() {
+		try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/gerenciamentoescolar", "root", "root");
+			 Statement statement = conn.createStatement()) {
+			String sql =
+//					"DELIMITER $$ \n" +
+					"CREATE PROCEDURE gerarMediaDisciplina(in id int)\n" +
+					"BEGIN\n" +
+					"select avg(pr.nota) as media from prova pr\n" +
+					"where pr.id = id\n" +
+					"group by pr.id;\n" +
+					"-- filtra pelo professor pois professor possui apenas uma disciplina\n" +
+					"END \n" ;
+//					"DELIMITER ;\n";
+			statement.execute(sql);
+			System.out.println("Procedure criada com sucesso.");
+
+		} catch (SQLException throwables) {
+			throwables.printStackTrace();
+		}
 	}
 }
 
-//	public static void chamaMediaDisciplinas() throws SQLException {
-//		try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/gerenciamentoescolar", "root", "root");
-//			 Statement statement = conn.createStatement()) {
-//			String sql = "DELIMITER $$\n" +
-//					"CREATE PROCEDURE gerarMediaDisciplina(in id int)\n" +
-//					"BEGIN\n" +
-//					"    select avg(pr.nota) \"media\" from prova pr\n" +
-//					"    where pr.id = id\n" +
-//					"    group by pr.id;\n" +
-//					"    -- filtra pelo professor pois professor possui apenas uma disciplina\n" +
-//					"END $$";
-//			statement.execute(sql);
-//			System.out.println("Procedure criada com sucesso.");
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//	}
-//}
