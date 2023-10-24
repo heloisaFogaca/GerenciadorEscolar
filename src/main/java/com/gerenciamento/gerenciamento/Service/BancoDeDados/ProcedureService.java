@@ -28,11 +28,11 @@ public class ProcedureService {
                             //filtra pelo professor pois professor possui apenas uma disciplina
                             "END \n" ;
             statement.execute(sql);
-            return "Procedure \"gerarMediaDisciplina(in id int)\" criada com sucesso.";
+            return "\nProcedure \"gerarMediaDisciplina(in id int)\" criada com sucesso.";
 
         } catch (SQLException throwables) {
-            throwables.printStackTrace();
-            return "Falha ao tentar criar a procedure \"gerarMediaDisciplina(in id int)\"";
+            //throwables.printStackTrace();
+            return "\nFalha ao tentar criar a procedure \"gerarMediaDisciplina(in id int)\" : " + throwables.getMessage();
         }
     }
 
