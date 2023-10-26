@@ -21,9 +21,12 @@ public class GerenciamentoApplication {
 		ProcedureService procedureService = new ProcedureService();
 		TriggerService triggerService = new TriggerService();
 
+		System.out.println(procedureService.criarGerarBoletimDisciplina());
 		System.out.println(procedureService.createGerarMediaDisciplina());
+
 		System.out.println(triggerService.createTriggerGerarMedia());
 		System.out.println(triggerService.createTriggerAtualiazarBoletim());
+
 	}
 
 }

@@ -17,7 +17,7 @@ public class AlunoController{
     private AlunoService alunoService;
 
     @GetMapping("/{id}")
-    public Aluno buscarAluno(@PathVariable Integer id) throws SQLException {
+    public Aluno buscarAluno(@PathVariable Integer id){
         return (Aluno) alunoService.buscarUsuario(id);
     }
 
@@ -27,12 +27,12 @@ public class AlunoController{
     }
 
     @DeleteMapping
-    public void remover(@RequestParam Integer id) throws SQLException {
+    public void remover(@RequestParam Integer id){
         alunoService.remover(id);
     }
 
     @PostMapping
-    public void inserir(@RequestBody Aluno aluno) throws SQLException {
+    public void inserir(@RequestBody Aluno aluno){
         alunoService.salvar(aluno);
     }
 

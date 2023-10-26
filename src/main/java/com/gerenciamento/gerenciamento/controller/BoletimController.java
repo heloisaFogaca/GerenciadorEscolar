@@ -22,7 +22,7 @@ public class BoletimController {
 
 
         @GetMapping("/{id}")
-        public Boletim buscar(@PathVariable ChaveBoletim chaveBoletim) throws SQLException {
+        public Boletim buscar(@PathVariable ChaveBoletim chaveBoletim){
             return boletimService.buscar(chaveBoletim);
         }
 
@@ -32,18 +32,20 @@ public class BoletimController {
         }
 
         @DeleteMapping
-        public void remover(@RequestParam ChaveBoletim chaveBoletim) throws SQLException {
+        public void remover(@RequestParam ChaveBoletim chaveBoletim) {
             boletimService.remover(chaveBoletim);
         }
 
-        @PostMapping
-        public void inserir(@RequestBody Boletim boletim) throws SQLException {
-            boletimService.salvar(boletim);
+
+        @PostMapping("/{turma_id}")
+        public void inserir(@PathVariable Integer turma_id) {
+            boletimService.salvar(turma_id);
         }
 
-        @PutMapping
-        public void atualizar(@RequestBody Boletim boletim){
-            boletimService.salvar(boletim);
+        @PutMapping("/{turma_id}")
+        public void atualizar(@PathVariable Integer turma_id){
+            boletimService.salvar(turma_id);
         }
+        //Esta como integer epero que nao aconteça um erro
+    }
 
-}

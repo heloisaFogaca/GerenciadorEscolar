@@ -17,17 +17,17 @@ public class SecretarioController{
     private SecretarioService usuarioService;
 
     @GetMapping("/{id}")
-    public Secretario buscarSecretario(@PathVariable Integer id) throws SQLException {
+    public Secretario buscarSecretario(@PathVariable Integer id){
         return (Secretario) usuarioService.buscarUsuario(id);
     }
 
     @GetMapping
-    public Collection buscarTodos() throws SQLException {
+    public Collection buscarTodos(){
         return usuarioService.buscarTodos();
     }
 
     @DeleteMapping
-    public void remover(@RequestParam Integer id) throws SQLException {
+    public void remover(@RequestParam Integer id){
         usuarioService.remover(id);
     }
 

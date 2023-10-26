@@ -19,17 +19,17 @@ public class UsuarioController {
         usuarioService.salvar(usuario);
     }
     @GetMapping("/{id}")
-    public Usuario buscarUsuario(@PathVariable Integer id) throws SQLException {
+    public Usuario buscarUsuario(@PathVariable Integer id){
         return usuarioService.buscarUsuario(id);
     }
 
     @GetMapping
-    public Collection buscarTodos() throws SQLException {
+    public Collection buscarTodos(){
         return usuarioService.buscarTodos();
     }
 
     @DeleteMapping
-    public void remover(@RequestParam Integer id) throws SQLException {
+    public void remover(@RequestParam Integer id)  {
         usuarioService.remover(id);
     }
 
