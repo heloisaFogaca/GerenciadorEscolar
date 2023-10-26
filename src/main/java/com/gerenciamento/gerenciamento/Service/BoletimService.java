@@ -1,9 +1,7 @@
 package com.gerenciamento.gerenciamento.Service;
 
-import com.gerenciamento.gerenciamento.model.Aluno;
-import com.gerenciamento.gerenciamento.model.Boletim;
-import com.gerenciamento.gerenciamento.model.ChaveBoletim;
-import com.gerenciamento.gerenciamento.model.Prova;
+import com.gerenciamento.gerenciamento.Service.BancoDeDados.ProcedureService;
+import com.gerenciamento.gerenciamento.model.*;
 import com.gerenciamento.gerenciamento.repository.BoletimRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,9 +13,25 @@ import java.util.Collection;
 public class BoletimService {
 
         private BoletimRepository boletimRepository;
+        private ProcedureService procedureService;
+        private TurmaService turmaService;
+        private ProfessorService professorService;
 
-        public void salvar(Aluno aluno) {
-            boletimRepository.save(gerarBoletim(aluno));
+        public void salvar(Integer turma_id) {
+
+            for(Aluno aluno : turmaService.buscarTurma(turma_id).getAlunos()){
+
+                for(Professor professor : professorService.buscarTodos()){
+                    if(professor.getTurma().getId() == turma_id ){
+                        procedureService.gerarBoletimDisciplina(turma_id, professor.getDisciplina().getId() ,aluno.getId());
+                    }
+                }
+
+            }
+
+
+
+//            boletimRepository.save(gerarBoletim(aluno));
         }
 
         public Boletim buscar(ChaveBoletim chaveBoletim) {

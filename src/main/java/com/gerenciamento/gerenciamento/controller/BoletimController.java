@@ -32,13 +32,14 @@ public class BoletimController {
             boletimService.remover(chaveBoletim);
         }
 
-        @PostMapping
-        public void inserir(@RequestBody Aluno aluno) throws SQLException {
-            boletimService.salvar(aluno);
+        @PostMapping("/turma_id")
+        public void inserir(@PathVariable Integer turma_id) throws SQLException {
+            boletimService.salvar(turma_id);
         }
 
-        @PutMapping
-        public void atualizar(@RequestBody Aluno aluno){
-            boletimService.salvar(aluno);
+        @PutMapping("/turma_id")
+        public void atualizar(@PathVariable Integer turma_id){
+            boletimService.salvar(turma_id);
         }
+        //Esta como integer epero que nao aconteça um erro
     }

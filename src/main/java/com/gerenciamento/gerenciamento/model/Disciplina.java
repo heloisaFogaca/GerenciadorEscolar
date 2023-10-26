@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Disciplina {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private int id;
     private String nome;
     private double cargaHoraria;

@@ -1,12 +1,12 @@
 package com.gerenciamento.gerenciamento.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Collection;
 
 @Data
 @Entity
@@ -14,6 +14,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Turma {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)    private  int id;
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    private  int id;
     private String nome;
+    @OneToMany(mappedBy = "turma")
+    @JsonIgnore
+    private Collection<Aluno> alunos;
 }
