@@ -48,7 +48,6 @@ public class ProcedureService {
         try (Connection conn = DriverManager.getConnection(BANCO_URL, USERNAME, PASSSWORD);
              CallableStatement statement = conn.prepareCall("{call gerarMediaDisciplina(1)}");) {
             //mudar para prepared statement e receber por parametro
-
             boolean hasResults = statement.execute();
 
             if (hasResults) {
@@ -69,13 +68,13 @@ public class ProcedureService {
 
     public String criarGerarBoletimDisciplina (){
 
-
         try (Connection conn = DriverManager.getConnection(BANCO_URL, USERNAME, PASSSWORD);
              Statement statement = conn.createStatement()) {
+            comandoSql = "DROP PROCEDURE IF EXISTS gerarBoletim;";
+            statement.execute(comandoSql);
+
+
             comandoSql = """
-                    
-            DROP PROCEDURE IF EXISTS gerarBoletim;
-    
             CREATE PROCEDURE gerarBoletim(IN turma_id INT, IN disciplina_id int , in aluno_id int)
             BEGIN
     
@@ -90,8 +89,6 @@ public class ProcedureService {
             //throwables.printStackTrace();
             return "\nFalha ao tentar criar a procedure \"gerarBoletim(IN turma_id INT, IN disciplina_id int , in aluno_id int)\" : " + throwables.getMessage();
         }
-
-//        call gerarBoletim(1,1,1);
     }
 
     public void gerarBoletimDisciplina(int turma_id,  int disciplina_id, int aluno_id){
@@ -99,13 +96,46 @@ public class ProcedureService {
         try (Connection conn = DriverManager.getConnection(BANCO_URL, USERNAME, PASSSWORD);
              CallableStatement statement = conn.prepareCall("{call gerarBoletim(" + turma_id + ", " + disciplina_id + "," + aluno_id + ")}");) {
             //mudar para prepared statement
-
             statement.execute();
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
     }
+
+    public String criarTriggerGerarMediaBoletim (){
+
+        try (Connection conn = DriverManager.getConnection(BANCO_URL, USERNAME, PASSSWORD);
+             Statement statement = conn.createStatement()) {
+
+            comandoSql = "DROP TRIGGER IF EXISTS gerarMediaBoletim;";
+            statement.execute(comandoSql);
+
+
+            comandoSql = """
+            CREATE TRIGGER gerarMediaBoletim
+            
+            BEFORE INSERT ON boletim FOR EACH ROW
+            BEGIN
+            SET NEW.media =
+                    (SELECT AVG(pr.nota) FROM prova pr JOIN professor pf
+            ON pr.professor_id = pf.id
+            WHERE NEW.aluno_id = pr.aluno_id
+            AND NEW.turma_id = pr.turma_id);
+        
+            END
+            """;
+            statement.execute(comandoSql);
+            return "\nTrigger \"gerarMediaBoletim\" criada com sucesso.";
+
+        } catch (SQLException throwables) {
+            //throwables.printStackTrace();
+            return "\nFalha ao tentar criar o trigger \"gerarMediaBoletim\" : " + throwables.getMessage();
+        }
+    }
+
+
+
 
 //    drop trigger if exists gerarMediaBoletim;
 //    delimiter $$
@@ -119,6 +149,20 @@ public class ProcedureService {
 //    and new.turma_id = pr.turma_id);
 //
 //    end $$
+//    delimiter ;
+
+//    DROP TRIGGER IF EXISTS gerarMediaBoletim;
+//    delimiter $$
+//    CREATE TRIGGER gerarMediaBoletim
+//    BEFORE INSERT ON boletim FOR EACH ROW
+//            BEGIN
+//    SET NEW.media =
+//            (SELECT AVG(pr.nota) FROM prova pr JOIN professor pf
+//    ON pr.professor_id = pf.id
+//    WHERE NEW.aluno_id = pr.aluno_id
+//    AND NEW.turma_id = pr.turma_id);
+//
+//    END $$
 //    delimiter ;
 
 }
