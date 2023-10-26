@@ -4,6 +4,7 @@ import com.gerenciamento.gerenciamento.model.Usuario;
 import com.gerenciamento.gerenciamento.repository.UsuarioRepository;
 
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
@@ -12,6 +13,7 @@ import java.util.NoSuchElementException;
 
 @AllArgsConstructor
 @Service
+@NoArgsConstructor
 public class UsuarioService {
     private UsuarioRepository usuarioRepository;
 

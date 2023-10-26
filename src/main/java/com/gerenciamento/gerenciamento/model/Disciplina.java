@@ -18,5 +18,8 @@ public class Disciplina {
     private int id;
     private String nome;
     private double cargaHoraria;
+
+    public Disciplina(int idDisciplina) {
+    }
 }
 

@@ -16,4 +16,7 @@ public class Turma {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)    private  int id;
     private String nome;
+
+    public Turma(int idTurma) {
+    }
 }

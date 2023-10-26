@@ -4,6 +4,7 @@ import com.gerenciamento.gerenciamento.model.Aluno;
 import com.gerenciamento.gerenciamento.model.Usuario;
 import com.gerenciamento.gerenciamento.repository.AlunoRepository;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
@@ -11,6 +12,7 @@ import java.util.Collection;
 
 @AllArgsConstructor
 @Service
+@NoArgsConstructor
 public class AlunoService {
 
         private AlunoRepository alunoRepository;

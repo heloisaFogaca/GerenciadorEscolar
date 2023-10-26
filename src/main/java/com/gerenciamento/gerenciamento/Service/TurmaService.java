@@ -5,12 +5,14 @@ import com.gerenciamento.gerenciamento.model.Turma;
 import com.gerenciamento.gerenciamento.repository.DisciplinaRepository;
 import com.gerenciamento.gerenciamento.repository.TurmaRepository;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 
 @AllArgsConstructor
 @Service
+@NoArgsConstructor
 public class TurmaService {
 
     private TurmaRepository turmaRepository;

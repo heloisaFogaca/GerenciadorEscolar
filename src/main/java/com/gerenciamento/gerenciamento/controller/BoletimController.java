@@ -7,6 +7,9 @@ import com.gerenciamento.gerenciamento.model.ChaveBoletim;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Collection;
 
@@ -16,6 +19,7 @@ import java.util.Collection;
 @AllArgsConstructor
 public class BoletimController {
         private BoletimService boletimService;
+
 
         @GetMapping("/{id}")
         public Boletim buscar(@PathVariable ChaveBoletim chaveBoletim) throws SQLException {
@@ -33,12 +37,13 @@ public class BoletimController {
         }
 
         @PostMapping
-        public void inserir(@RequestBody Aluno aluno) throws SQLException {
-            boletimService.salvar(aluno);
+        public void inserir(@RequestBody Boletim boletim) throws SQLException {
+            boletimService.salvar(boletim);
         }
 
         @PutMapping
-        public void atualizar(@RequestBody Aluno aluno){
-            boletimService.salvar(aluno);
+        public void atualizar(@RequestBody Boletim boletim){
+            boletimService.salvar(boletim);
         }
-    }
+
+}
