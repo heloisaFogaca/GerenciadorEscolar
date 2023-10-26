@@ -8,8 +8,9 @@ import org.springframework.stereotype.Service;
 import java.sql.*;
 import java.util.Collection;
 
-//@Service
+@Service
 @AllArgsConstructor
+//@NoArgsConstructor
 public class ProcedureService {
 
     private static final String BANCO_URL = "jdbc:mysql://localhost:3306/gerenciamentoescolar";
