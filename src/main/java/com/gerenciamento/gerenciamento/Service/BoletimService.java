@@ -4,13 +4,29 @@ import com.gerenciamento.gerenciamento.Service.BancoDeDados.ProcedureService;
 import com.gerenciamento.gerenciamento.model.*;
 import com.gerenciamento.gerenciamento.repository.BoletimRepository;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.sql.*;
 import java.util.Collection;
 
 @AllArgsConstructor
 @Service
 public class BoletimService {
+
+
+    private static final String BANCO_URL = "jdbc:mysql://localhost:3306/gerenciamentoescolar";
+    private static final String USERNAME = "root";
+    private static final String PASSSWORD = "root";
+
+        private final BoletimRepository boletimRepository;
+        TurmaService turmaService;
+        DisciplinaService disciplinaService;
+        UsuarioService usuarioService;
+
+        public void salvar(Boletim boletim) {
+            boletimRepository.save(boletim);
+        }
 
         private BoletimRepository boletimRepository;
         private ProcedureService procedureService;
@@ -32,6 +48,7 @@ public class BoletimService {
 
 
 //            boletimRepository.save(gerarBoletim(aluno));
+
         }
 
         public Boletim buscar(ChaveBoletim chaveBoletim) {
@@ -46,13 +63,6 @@ public class BoletimService {
             boletimRepository.deleteById(chaveBoletim);
         }
 
-        public Boletim gerarBoletim(Aluno aluno){
-        double somaMedias = 0.0;
-        for(Prova prova : aluno.getProvas()){
-            somaMedias += prova.getNota();
-        }
-        return new Boletim(aluno,somaMedias/aluno.getProvas().size());
-    }
 
 }
 

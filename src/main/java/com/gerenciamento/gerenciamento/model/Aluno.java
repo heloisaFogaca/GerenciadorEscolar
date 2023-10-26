@@ -25,4 +25,6 @@ public class Aluno extends Usuario {
     @JsonIgnore
     private List<Prova> provas;
 
+    public Aluno(int idAluno) {
+    }
 }

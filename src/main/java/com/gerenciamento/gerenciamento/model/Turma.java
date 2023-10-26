@@ -17,7 +17,9 @@ public class Turma {
     @GeneratedValue(strategy = GenerationType.TABLE)
     private  int id;
     private String nome;
+
     @OneToMany(mappedBy = "turma")
     @JsonIgnore
     private Collection<Aluno> alunos;
+
 }

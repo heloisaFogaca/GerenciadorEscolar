@@ -3,12 +3,14 @@ package com.gerenciamento.gerenciamento.Service;
 import com.gerenciamento.gerenciamento.model.Disciplina;
 import com.gerenciamento.gerenciamento.repository.DisciplinaRepository;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 
 @AllArgsConstructor
 @Service
+@NoArgsConstructor
 public class DisciplinaService {
 
     private DisciplinaRepository disciplinaRepository;

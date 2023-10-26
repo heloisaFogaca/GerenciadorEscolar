@@ -7,6 +7,9 @@ import com.gerenciamento.gerenciamento.model.ChaveBoletim;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Collection;
 
@@ -16,6 +19,7 @@ import java.util.Collection;
 @AllArgsConstructor
 public class BoletimController {
         private BoletimService boletimService;
+
 
         @GetMapping("/{id}")
         public Boletim buscar(@PathVariable ChaveBoletim chaveBoletim){
@@ -32,6 +36,7 @@ public class BoletimController {
             boletimService.remover(chaveBoletim);
         }
 
+
         @PostMapping("/{turma_id}")
         public void inserir(@PathVariable Integer turma_id) {
             boletimService.salvar(turma_id);
@@ -43,3 +48,4 @@ public class BoletimController {
         }
         //Esta como integer epero que nao aconteça um erro
     }
+
