@@ -19,7 +19,7 @@ public class UsuarioService {
         usuarioRepository.save(usuario);
     }
 
-    public Usuario buscarUsuario(Integer id) throws SQLException {
+    public Usuario buscarUsuario(Integer id){
         return usuarioRepository.findById(id).get();
     }
 
