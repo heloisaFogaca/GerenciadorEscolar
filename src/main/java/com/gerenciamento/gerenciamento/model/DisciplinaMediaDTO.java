@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 public class DisciplinaMediaDTO {
 
 //    private Aluno aluno;
-    private Integer id;
-    private String nome;
+    private Integer aluno_id;
+    private String aluno_nome;
     private Double media;
-//    private Integer turma_id;
+    private Integer turma_id;
 
 }

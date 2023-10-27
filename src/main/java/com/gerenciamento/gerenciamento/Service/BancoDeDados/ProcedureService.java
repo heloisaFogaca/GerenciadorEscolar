@@ -39,9 +39,11 @@ public class ProcedureService {
             """
             CREATE PROCEDURE gerarMediaDisciplina(in id int)
             BEGIN
-            select pr.aluno_id, u.nome, avg(pr.nota) as "media"
-            from prova pr join usuario u
-            on pr.aluno_id = u.id
+            select pr.aluno_id, u.nome, a.turma_id as "turma_id", avg(pr.nota) as "media"
+            from prova pr join aluno a join usuario u
+            on pr.aluno_id = a.id
+            and pr.aluno_id = u.id
+            and u.id = a.id
             where pr.disciplina_id = id
             group by pr.aluno_id;
             END
@@ -78,8 +80,9 @@ public class ProcedureService {
                     DisciplinaMediaDTO mediaDisciplina = new DisciplinaMediaDTO();
                     mediaDisciplina.setMedia(resultSet.getDouble("media"));
 
-                    mediaDisciplina.setNome((resultSet.getString("nome")));
-                    mediaDisciplina.setId(resultSet.getInt("aluno_id"));
+                    mediaDisciplina.setAluno_nome((resultSet.getString("nome")));
+                    mediaDisciplina.setAluno_id(resultSet.getInt("aluno_id"));
+                    mediaDisciplina.setTurma_id(resultSet.getInt("turma_id"));
                     BeanUtils.copyProperties(resultSet, mediaDisciplina);
                     mediasDisciplina.add(mediaDisciplina);
                 }
