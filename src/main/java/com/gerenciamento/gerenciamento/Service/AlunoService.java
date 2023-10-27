@@ -20,7 +20,7 @@ public class AlunoService {
             alunoRepository.save(aluno);
         }
 
-        public Usuario buscarUsuario(Integer id) {
+        public Aluno buscarUsuario(Integer id) {
             return alunoRepository.findById(id).get();
         }
 

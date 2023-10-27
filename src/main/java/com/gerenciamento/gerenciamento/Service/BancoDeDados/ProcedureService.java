@@ -1,12 +1,21 @@
 package com.gerenciamento.gerenciamento.Service.BancoDeDados;
 
+import com.gerenciamento.gerenciamento.Service.AlunoService;
+import com.gerenciamento.gerenciamento.model.Aluno;
 import com.gerenciamento.gerenciamento.model.Boletim;
+import com.gerenciamento.gerenciamento.model.DisciplinaMediaDTO;
+import com.gerenciamento.gerenciamento.repository.AlunoRepository;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import java.util.Set;
 
 @Service
 @AllArgsConstructor
@@ -19,18 +28,25 @@ public class ProcedureService {
 
     private static String comandoSql;
 
+//    private final AlunoRepository alunoRepository;
+//    private final AlunoService alunoService;
+
 
     public String createGerarMediaDisciplina() {
         try (Connection conn = DriverManager.getConnection(BANCO_URL, USERNAME, PASSSWORD);
              Statement statement = conn.createStatement()) {
             comandoSql =
-                    "CREATE PROCEDURE gerarMediaDisciplina(in id int)\n" +
-                            "BEGIN\n" +
-                            "select avg(pr.nota) as media from prova pr\n" +
-                            "where pr.id = id\n" +
-                            "group by pr.id;\n" +
-                            //filtra pelo professor pois professor possui apenas uma disciplina
-                            "END \n" ;
+            """
+            CREATE PROCEDURE gerarMediaDisciplina(in id int)
+            BEGIN
+            select pr.aluno_id, u.nome, avg(pr.nota) as "media"
+            from prova pr join usuario u
+            on pr.aluno_id = u.id
+            where pr.disciplina_id = id
+            group by pr.aluno_id;
+            END
+            """;
+                 //drop procedure gerarMediaDisciplina;
             statement.execute(comandoSql);
             return "\nProcedure \"gerarMediaDisciplina(in id int)\" criada com sucesso.";
 
@@ -42,22 +58,34 @@ public class ProcedureService {
 
     //CHECKPOINT
 
-    public Collection<Double> callGerarMediaDisciplina(int id) throws SQLException {
+    public Collection<DisciplinaMediaDTO> callGerarMediaDisciplina(int id) {
         //mudar para retornar a media de todas as disciplinas a acima a mesma coisa (talvez mudar estrutura do BD pois aluno pode ter varia disciplinas[a verificar])
 
         try (Connection conn = DriverManager.getConnection(BANCO_URL, USERNAME, PASSSWORD);
-             CallableStatement statement = conn.prepareCall("{call gerarMediaDisciplina(1)}");) {
+             CallableStatement statement = conn.prepareCall("{call gerarMediaDisciplina("+id+")}");) {
+
             //mudar para prepared statement e receber por parametro
             boolean hasResults = statement.execute();
 
             if (hasResults) {
                 ResultSet resultSet = statement.getResultSet();
 
-                if (resultSet.next()) {
-                    double media = resultSet.getDouble("media");
-                    System.out.println("A média das notas da disciplina é: " + media);
+                Collection<DisciplinaMediaDTO> mediasDisciplina = new ArrayList<>();
+                while(resultSet.next()){
+                    System.out.println("entrei no while");
+                    System.out.println(resultSet.getDouble("media"));
+                    System.out.println(resultSet.getInt("aluno_id"));
+                    DisciplinaMediaDTO mediaDisciplina = new DisciplinaMediaDTO();
+                    mediaDisciplina.setMedia(resultSet.getDouble("media"));
+
+                    mediaDisciplina.setNome((resultSet.getString("nome")));
+                    mediaDisciplina.setId(resultSet.getInt("aluno_id"));
+                    BeanUtils.copyProperties(resultSet, mediaDisciplina);
+                    mediasDisciplina.add(mediaDisciplina);
                 }
+                System.out.println(mediasDisciplina);
                 resultSet.close();
+                return mediasDisciplina;
             }
             return null;
         } catch (SQLException throwables) {
