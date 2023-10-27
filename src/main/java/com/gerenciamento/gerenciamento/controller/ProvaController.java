@@ -12,7 +12,7 @@ import java.util.Collection;
 @RequestMapping("/prova")
 @AllArgsConstructor
 public class ProvaController {
-    private ProvaService provaService;
+    private final ProvaService provaService;
 
     @GetMapping("/{id}")
     public Prova buscarProva(@PathVariable Integer id)   {

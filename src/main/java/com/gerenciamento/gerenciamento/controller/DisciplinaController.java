@@ -11,7 +11,7 @@ import java.util.Collection;
 @RequestMapping("/disciplina")
 @AllArgsConstructor
 public class DisciplinaController {
-    private DisciplinaService disciplinaService;
+    private final DisciplinaService disciplinaService;
 
     @GetMapping("/{id}")
     public Disciplina buscarDisciplina(@PathVariable Integer id) {

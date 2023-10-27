@@ -10,7 +10,6 @@ import java.util.Collection;
 
 @AllArgsConstructor
 @Service
-@NoArgsConstructor
 public class DisciplinaService {
 
     private DisciplinaRepository disciplinaRepository;

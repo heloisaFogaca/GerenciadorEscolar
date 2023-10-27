@@ -14,7 +14,7 @@ import java.util.Collection;
 @AllArgsConstructor
 @CrossOrigin(origins = "http://localhost:3000")
 public class ProfessorController {
-    private ProfessorService usuarioService;
+    private final ProfessorService usuarioService;
 
     @GetMapping("/{id}")
     public Professor buscarProfessor(@PathVariable Integer id){

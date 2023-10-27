@@ -13,7 +13,6 @@ import java.util.NoSuchElementException;
 
 @AllArgsConstructor
 @Service
-@NoArgsConstructor
 public class UsuarioService {
     private UsuarioRepository usuarioRepository;
 

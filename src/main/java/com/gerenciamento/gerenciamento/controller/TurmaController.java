@@ -12,7 +12,7 @@ import java.util.Collection;
 @RequestMapping("/turma")
 @AllArgsConstructor
 public class TurmaController {
-    private TurmaService turmaService;
+    private final TurmaService turmaService;
 
     @GetMapping("/{id}")
     public Turma buscarTurma(@PathVariable Integer id)   {

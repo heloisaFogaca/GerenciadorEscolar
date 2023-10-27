@@ -28,10 +28,8 @@ public class BoletimService {
             boletimRepository.save(boletim);
         }
 
-        private BoletimRepository boletimRepository;
-        private ProcedureService procedureService;
-        private TurmaService turmaService;
-        private ProfessorService professorService;
+        private final ProcedureService procedureService;
+        private final ProfessorService professorService;
 
         public void salvar(Integer turma_id) {
 
@@ -44,13 +42,9 @@ public class BoletimService {
                 }
 
             }
-
-
-
 //            boletimRepository.save(gerarBoletim(aluno));
 
         }
-
         public Boletim buscar(ChaveBoletim chaveBoletim) {
             return boletimRepository.findById(chaveBoletim).get();
         }

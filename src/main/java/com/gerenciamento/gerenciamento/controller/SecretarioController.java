@@ -14,7 +14,7 @@ import java.util.Collection;
 @RequestMapping("/secretario")
 @AllArgsConstructor
 public class SecretarioController{
-    private SecretarioService usuarioService;
+    private final SecretarioService usuarioService;
 
     @GetMapping("/{id}")
     public Secretario buscarSecretario(@PathVariable Integer id){

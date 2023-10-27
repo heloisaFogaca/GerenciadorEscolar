@@ -12,7 +12,7 @@ import java.util.Collection;
 @RequestMapping("/usuario")
 @AllArgsConstructor
 public class UsuarioController {
-    private UsuarioService usuarioService;
+    private final UsuarioService usuarioService;
 
     @PostMapping
     public void inserir(@RequestBody Usuario usuario) {

@@ -12,10 +12,9 @@ import java.util.Collection;
 
 @AllArgsConstructor
 @Service
-@NoArgsConstructor
 public class AlunoService {
 
-        private AlunoRepository alunoRepository;
+        private final AlunoRepository alunoRepository;
 
         public void salvar(Aluno aluno) {
             alunoRepository.save(aluno);

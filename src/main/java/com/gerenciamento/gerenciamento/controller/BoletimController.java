@@ -18,7 +18,7 @@ import java.util.Collection;
 @RequestMapping("/boletim")
 @AllArgsConstructor
 public class BoletimController {
-        private BoletimService boletimService;
+        private final BoletimService boletimService;
 
 
         @GetMapping("/{id}")
