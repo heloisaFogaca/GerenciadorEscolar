@@ -14,6 +14,8 @@ import java.util.Collection;
 public class UsuarioController {
     private UsuarioService usuarioService;
 
+    // teste
+
     @PostMapping
     public void inserir(@RequestBody Usuario usuario) {
         usuarioService.salvar(usuario);
